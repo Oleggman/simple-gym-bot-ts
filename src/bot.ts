@@ -26,7 +26,7 @@ bot.on('message', async (ctx) => {
   }
 });
 
-schedule.scheduleJob('15 19 * * *', async () => {
+schedule.scheduleJob('20 16 * * *', async () => {
   if (!chatId) {
     console.error('Chat ID is undefined!');
     return;
