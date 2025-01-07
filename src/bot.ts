@@ -24,36 +24,6 @@ bot.on('message', async (ctx) => {
     chatId = ctx.chat.id; 
     console.log(`Chat ID saved: ${chatId}`);
   }
-    
-  if (ctx.text !== '/testpoll') return;
-  if (!chatId) {
-    console.error('Chat ID is undefined!');
-    return;
-  }
-
-  const poll = await bot.telegram.sendPoll(chatId, pollQuestion, pollOptions, {
-    is_anonymous: false,
-  });
-
-  bot.on('poll_answer', (ctx) => {
-    const { user, option_ids } = ctx.update.poll_answer;
-    const selectedOption = pollOptions[option_ids[0]];
-
-    if (user && chatId) {
-      userResponses[user.id] = selectedOption;
-      switch (selectedOption) {
-        case '+':
-          bot.telegram.sendMessage(chatId, `Фарту @${user.username}`);
-          break;
-        case '-':
-          bot.telegram.sendMessage(chatId, `@${user.username} завтра на измене`);
-          break;
-        case 'Інший час':
-          bot.telegram.sendMessage(chatId, `@${user.username}, на котру годину ти хочеш піти?`);
-          break;
-      }
-    }
-  });
 });
 
 schedule.scheduleJob('0 18 * * 0,4', async () => {
