@@ -12,7 +12,7 @@ if (!BOT_TOKEN) {
 
 const bot = new Telegraf(BOT_TOKEN);
 
-const pollQuestion = 'Хто завтра йде на жим на 10?';
+const pollQuestion = 'Хто завтра йде в зал на 10?';
 const pollOptions = ['+', '-', 'Інший час'];
 
 const userResponses: Record<string, string> = {};
