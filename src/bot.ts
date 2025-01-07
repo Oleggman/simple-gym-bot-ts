@@ -17,9 +17,16 @@ const pollOptions = ['+', '-', 'Інший час'];
 
 const userResponses: Record<string, string> = {};
 
-const chatId: number | undefined = -1002114538990;
+let chatId: number | undefined;
 
-schedule.scheduleJob('10 19 * * *', async () => {
+bot.on('message', async (ctx) => {
+  if (!chatId) {
+    chatId = ctx.chat.id; 
+    console.log(`Chat ID saved: ${chatId}`);
+  }
+});
+
+schedule.scheduleJob('15 19 * * *', async () => {
   if (!chatId) {
     console.error('Chat ID is undefined!');
     return;
